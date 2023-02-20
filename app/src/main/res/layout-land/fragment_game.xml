@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gameContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/quiz_background"
+    tools:context=".ui.quiz.QuizFragment">
+
+    <TextView
+        android:id="@+id/tvTopLeft"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="0sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imTopLeft"
+        app:layout_constraintEnd_toEndOf="@+id/imTopLeft"
+        app:layout_constraintStart_toStartOf="@+id/imTopLeft"
+        app:layout_constraintTop_toTopOf="@+id/imTopLeft" />
+
+    <ImageView
+        android:id="@+id/imTopLeft"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/glHorizontal"
+        app:layout_constraintEnd_toStartOf="@id/glVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/wrongTopLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="3"
+        android:scaleY="3"
+        android:src="@drawable/ic_wrong_answer"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imTopLeft"
+        app:layout_constraintEnd_toEndOf="@+id/imTopLeft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTopRight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="0sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imTopRight"
+        app:layout_constraintEnd_toEndOf="@+id/imTopRight"
+        app:layout_constraintStart_toStartOf="@+id/imTopRight"
+        app:layout_constraintTop_toTopOf="@+id/imTopRight" />
+
+    <ImageView
+        android:id="@+id/imTopRight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/glHorizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/glVertical"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/wrongTopRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="3"
+        android:scaleY="3"
+        android:src="@drawable/ic_wrong_answer"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imTopRight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/imTopRight"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBottomLeft"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="0sp"
+        app:layout_constraintBottom_toBottomOf="@id/imBottomLeft"
+        app:layout_constraintEnd_toEndOf="@+id/imBottomLeft"
+        app:layout_constraintStart_toStartOf="@+id/imBottomLeft"
+        app:layout_constraintTop_toTopOf="@+id/imBottomLeft" />
+
+    <ImageView
+        android:id="@+id/imBottomLeft"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:textSize="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/glVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/glHorizontal" />
+
+    <ImageView
+        android:id="@+id/wrongBottomLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="3"
+        android:scaleY="3"
+        android:src="@drawable/ic_wrong_answer"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imBottomLeft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imBottomLeft" />
+
+    <TextView
+        android:id="@+id/tvBottomRight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textSize="0sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imBottomRight"
+        app:layout_constraintEnd_toEndOf="@+id/imBottomRight"
+        app:layout_constraintStart_toStartOf="@+id/imBottomRight"
+        app:layout_constraintTop_toTopOf="@+id/imBottomRight" />
+
+    <ImageView
+        android:id="@+id/imBottomRight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/glVertical"
+        app:layout_constraintTop_toBottomOf="@id/glHorizontal" />
+
+    <ImageView
+        android:id="@+id/wrongBottomRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="3"
+        android:scaleY="3"
+        android:src="@drawable/ic_wrong_answer"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/imBottomRight"
+        app:layout_constraintTop_toTopOf="@id/imBottomRight" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/imRightAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

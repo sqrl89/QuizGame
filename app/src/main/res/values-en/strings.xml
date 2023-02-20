@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GuessTheAnimal</string>
+    <string name="unsupported_language">Unsupported language</string>
+    <string name="error">Error!</string>
+    <string name="domestic_animals">Domestic\nanimals</string>
+    <string name="forest_animals">Forest\nanimals</string>
+    <string name="african_animals">World\nanimals</string>
+    <string name="dinosaurs">Dinosaurs</string>
+    <string name="games_for_kids">Education for kids</string>
+    <string name="result">Your result: </string>
+    <string name="slash"> / </string>
+    <string name="congrats_0">Try again!</string>
+    <string name="congrats_1">Nice!</string>
+    <string name="congrats_2">Cool!</string>
+    <string name="congrats_3">Amazing!</string>
+    <string name="tap_again">Tap once again</string>
+    <string name="colors">Colors</string>
+    <string name="digits">Digits</string>
+    <string name="letters">Letters</string>
+    <string name="furniture">Furniture</string>
+    <string name="image_main">Main image</string>
+    <string name="image_next">Next image</string>
+    <string name="image_start_quiz">Start quiz image</string>
+    <string name="to_main">To main</string>
+    <string name="image_prev">Previous image</string>
+    <string name="start_quiz">Start quiz?</string>
+    <string name="tap_to_start_quiz">Tap to\nstart quiz</string>
+</resources>
