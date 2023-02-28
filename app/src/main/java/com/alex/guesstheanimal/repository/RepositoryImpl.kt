@@ -1,7 +1,7 @@
 package com.alex.guesstheanimal.repository
 
-import com.alex.guesstheanimal.data.database.Animal
-import com.alex.guesstheanimal.data.database.Dao
+import com.alex.guesstheanimal.database.Animal
+import com.alex.guesstheanimal.database.Dao
 import com.alex.guesstheanimal.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

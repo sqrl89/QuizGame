@@ -1,18 +1,17 @@
 package com.alex.guesstheanimal.ui.learn
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alex.guesstheanimal.data.database.Animal
+import com.alex.guesstheanimal.database.Animal
 import com.alex.guesstheanimal.ui.Screens
 import com.alex.guesstheanimal.ui.learn.core.LearnInteractor
-import com.alex.guesstheanimal.utils.Const.CATEGORY_DIGIT
-import com.alex.guesstheanimal.utils.Const.CATEGORY_EN_LETTER
-import com.alex.guesstheanimal.utils.Const.CATEGORY_RU_LETTER
+import com.alex.guesstheanimal.utils.Const.CATEGORY_DIGITS
+import com.alex.guesstheanimal.utils.Const.CATEGORY_LETTERS_EN
+import com.alex.guesstheanimal.utils.Const.CATEGORY_LETTERS_RU
 import com.alex.guesstheanimal.utils.Const.LEARN_COUNT
 import com.alex.guesstheanimal.utils.Const.LEARN_DIGITS_COUNT
-import com.alex.guesstheanimal.utils.Const.LEARN_EN_LETTERS_COUNT
-import com.alex.guesstheanimal.utils.Const.LEARN_RU_LETTERS_COUNT
+import com.alex.guesstheanimal.utils.Const.LEARN_LETTERS_EN_COUNT
+import com.alex.guesstheanimal.utils.Const.LEARN_LETTERS_RU_COUNT
 import com.github.terrakok.cicerone.Router
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -48,12 +47,13 @@ class LearnViewModel @Inject constructor(
     private val _locale = MutableStateFlow("ru")
     var locale = _locale.asStateFlow()
 
+    // TODO: check
     fun setCategory(category: String) {
         _category.value = category
         when (category) {
-            CATEGORY_DIGIT -> _constLearnCount.value = LEARN_DIGITS_COUNT //20: 0-20
-            CATEGORY_EN_LETTER -> _constLearnCount.value = LEARN_EN_LETTERS_COUNT //25: A-Z
-            CATEGORY_RU_LETTER -> _constLearnCount.value = LEARN_RU_LETTERS_COUNT // 32: А-Я
+            CATEGORY_DIGITS -> _constLearnCount.value = LEARN_DIGITS_COUNT //20: 0-20
+            CATEGORY_LETTERS_EN -> _constLearnCount.value = LEARN_LETTERS_EN_COUNT //25: A-Z
+            CATEGORY_LETTERS_RU -> _constLearnCount.value = LEARN_LETTERS_RU_COUNT // 32: А-Я
             else -> _constLearnCount.value = LEARN_COUNT // 19: 20 шт.
         }
     }
@@ -92,8 +92,6 @@ class LearnViewModel @Inject constructor(
     }
 
     fun onBackPressed() {
-        Log.e("TAG", "onBackPressed learn: ${router}", )
         router.exit()
-        Log.e("TAG", "onBackPressed learn: ${router.toString()}", )
     }
 }

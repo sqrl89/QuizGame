@@ -1,6 +1,6 @@
 package com.alex.guesstheanimal.ui.learn.core
 
-import com.alex.guesstheanimal.data.database.Animal
+import com.alex.guesstheanimal.database.Animal
 import com.alex.guesstheanimal.repository.Repository
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

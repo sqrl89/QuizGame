@@ -1,6 +1,6 @@
 package com.alex.guesstheanimal.ui.quiz.core
 
-import com.alex.guesstheanimal.data.database.Animal
+import com.alex.guesstheanimal.database.Animal
 import kotlinx.coroutines.flow.Flow
 
 interface QuizInteractor {

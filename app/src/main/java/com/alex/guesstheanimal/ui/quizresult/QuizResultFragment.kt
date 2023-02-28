@@ -1,5 +1,6 @@
 package com.alex.guesstheanimal.ui.quizresult
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -30,6 +31,7 @@ import java.util.concurrent.TimeUnit
 class QuizResultFragment : Fragment(R.layout.fragment_quiz_result) {
     private val viewBinding: FragmentQuizResultBinding by viewBinding()
     private val viewModel: QuizResultViewModel by viewModels()
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,31 +44,40 @@ class QuizResultFragment : Fragment(R.layout.fragment_quiz_result) {
     }
 
     private fun setUi() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.result.collect {
-                    viewBinding.tvResult.text = buildString {
-                        append(resources.getString(R.string.result))
-                        append(it.toString())
-                        append(resources.getString(R.string.slash))
-                        append(QUIZ_COUNT)
+        viewBinding.apply {
+            appearScaleAnimation(1000, imStar1, imStar2, imStar3)
+            speakOut(R.raw.ru_ovations)
+            parade()
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.result.collect {
+                        setText(it!!)
+                        when (it) {
+                            0 -> putStars()
+                            in 1..ONE_STAR_RESULT -> putStars(imStar1)
+                            THREE_STARS_RESULT -> putStars(imStar1, imStar2, imStar3)
+                            else -> putStars(imStar1, imStar2)
+                        }
                     }
-                    setResult(it!!)
                 }
             }
         }
-        parade()
     }
 
-    private fun setResult(result: Int) {
+    private fun setText(result: Int) {
         viewBinding.apply {
-            appearScaleAnimation(1000, imStar1, imStar2, imStar3, tvResult)
             when (result) {
-                in 1..ONE_STAR_RESULT -> putStars(imStar1)
-                THREE_STARS_RESULT -> putStars(imStar1, imStar2, imStar3)
-                else -> putStars(imStar1, imStar2)
+                0 -> tvCongrats.text = resources.getString(R.string.congrats_0)
+                in 1..ONE_STAR_RESULT -> tvCongrats.text = resources.getString(R.string.congrats_1)
+                THREE_STARS_RESULT -> tvCongrats.text = resources.getString(R.string.congrats_3)
+                else -> tvCongrats.text = resources.getString(R.string.congrats_2)
             }
-            tvCongrats.text = viewModel.congrats.value
+            tvResult.text = buildString {
+                append(resources.getString(R.string.result))
+                append(result.toString())
+                append(resources.getString(R.string.slash))
+                append(QUIZ_COUNT)
+            }
         }
     }
 
@@ -77,6 +88,11 @@ class QuizResultFragment : Fragment(R.layout.fragment_quiz_result) {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
+    private fun speakOut(path: Int) {
+        mediaPlayer = MediaPlayer.create(requireContext(), path)
+        mediaPlayer.start()
     }
 
     private fun parade() {
@@ -142,6 +158,12 @@ class QuizResultFragment : Fragment(R.layout.fragment_quiz_result) {
             delay(10000)
             viewModel.onBackPressed()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mediaPlayer.stop()
+        mediaPlayer.release()
     }
 
     companion object {

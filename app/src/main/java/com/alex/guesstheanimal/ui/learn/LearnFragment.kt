@@ -1,11 +1,8 @@
 package com.alex.guesstheanimal.ui.learn
 
+import android.media.MediaPlayer
 import android.os.Bundle
-import android.speech.tts.TextToSpeech
-import android.speech.tts.TextToSpeech.LANG_MISSING_DATA
-import android.speech.tts.TextToSpeech.LANG_NOT_SUPPORTED
-import android.speech.tts.TextToSpeech.OnInitListener
-import android.speech.tts.TextToSpeech.SUCCESS
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.core.net.toUri
@@ -16,41 +13,41 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.alex.guesstheanimal.R
-import com.alex.guesstheanimal.data.database.Animal
+import com.alex.guesstheanimal.database.Animal
 import com.alex.guesstheanimal.databinding.FragmentLearnBinding
+import com.alex.guesstheanimal.utils.Const.CATEGORY_DIGITS
+import com.alex.guesstheanimal.utils.Const.CATEGORY_LETTERS_EN
+import com.alex.guesstheanimal.utils.Const.CATEGORY_LETTERS_RU
 import com.alex.guesstheanimal.utils.Const.LOCALE_EN
 import com.alex.guesstheanimal.utils.Const.LOCALE_RU
 import com.alex.guesstheanimal.utils.appearScaleAnimation
 import com.alex.guesstheanimal.utils.disappearScaleAnimation
 import com.alex.guesstheanimal.utils.showOrGone
-import com.alex.guesstheanimal.utils.showSnackbar
 import com.alex.guesstheanimal.utils.showToast
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.Locale
 
 @AndroidEntryPoint
-class LearnFragment : Fragment(R.layout.fragment_learn), OnInitListener {
+class LearnFragment : Fragment(R.layout.fragment_learn) {
     private val viewModel: LearnViewModel by viewModels()
     private val viewBinding: FragmentLearnBinding by viewBinding()
-    private var textToSpeech: TextToSpeech? = null
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getString(LEARN_KEY).also {
             if (it != null) viewModel.setCategory(it)
         }
-        textToSpeech = TextToSpeech(requireContext(), null)
         initListeners()
         onBackPressed()
         setLocale()
         setFirstAnimal()
     }
 
-    // TODO: check if default EN
+    // TODO: check if default EN and in VM
     private fun setLocale() {
         when (resources.configuration.locales[0].toString()) {
             LOCALE_RU -> viewModel.setLocale("ru")
@@ -62,13 +59,17 @@ class LearnFragment : Fragment(R.layout.fragment_learn), OnInitListener {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.onChosenCategory().collectLatest { list ->
-                    list.shuffle()
+                    // TODO: refactor
+                    val cat = viewModel.category.value
+                    if (cat == CATEGORY_DIGITS || cat == CATEGORY_LETTERS_RU || cat == CATEGORY_LETTERS_EN) {
+                        Log.e("TAG", "setFirstAnimal: $cat")
+                    } else list.shuffle()
                     viewModel.setAnimalList(list)
                     Glide.with(requireContext()).load(list[0].imageUri?.toUri())
                         .into(viewBinding.imMain)
                     when (viewModel.locale.value) {
-                        LOCALE_RU -> speakOut(list[0].nameRu)
-                        LOCALE_EN -> speakOut(list[0].nameEn)
+                        LOCALE_RU -> list[0].soundUriRu?.let { speakOut(it) }
+                        LOCALE_EN -> list[0].soundUriEN?.let { speakOut(it) }
                     }
                 }
             }
@@ -81,8 +82,8 @@ class LearnFragment : Fragment(R.layout.fragment_learn), OnInitListener {
         Glide.with(requireContext()).load(list[position].imageUri?.toUri())
             .into(viewBinding.imMain)
         when (viewModel.locale.value) {
-            LOCALE_RU -> speakOut(list[position].nameRu)
-            LOCALE_EN -> speakOut(list[position].nameEn)
+            LOCALE_RU -> list[position].soundUriRu?.let { speakOut(it) }
+            LOCALE_EN -> list[position].soundUriEN?.let { speakOut(it) }
         }
         checkCount(viewModel.constLearnCount.value)
     }
@@ -93,8 +94,8 @@ class LearnFragment : Fragment(R.layout.fragment_learn), OnInitListener {
         Glide.with(requireContext()).load(list[position].imageUri?.toUri())
             .into(viewBinding.imMain)
         when (viewModel.locale.value) {
-            LOCALE_RU -> speakOut(list[position].nameRu)
-            LOCALE_EN -> speakOut(list[position].nameEn)
+            LOCALE_RU -> list[position].soundUriRu?.let { speakOut(it) }
+            LOCALE_EN -> list[position].soundUriEN?.let { speakOut(it) }
         }
         checkCount(viewModel.constLearnCount.value)
     }
@@ -132,6 +133,11 @@ class LearnFragment : Fragment(R.layout.fragment_learn), OnInitListener {
                 cbQuiz.setOnClickListener {
                     viewBinding.apply {
                         if (cbQuiz.isChecked) {
+                            mediaPlayer = if (viewModel.locale.value == "ru") MediaPlayer.create(
+                                requireContext(), R.raw.ru_play
+                            )
+                            else MediaPlayer.create(requireContext(), R.raw.en_play)
+                            mediaPlayer.start()
                             appearScaleAnimation(1000, tvStartQuiz)
                             showOrGone(0, true, tvStartQuiz)
                             showOrGone(0, false, imNext, imPrev)
@@ -153,24 +159,12 @@ class LearnFragment : Fragment(R.layout.fragment_learn), OnInitListener {
         }
     }
 
-    // TODO: будет же плеер, а не TTS
-    private fun speakOut(text: String) {
+    private fun speakOut(path: String) {
         viewLifecycleOwner.lifecycleScope.launch {
             delay(500)
-            textToSpeech!!.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
+            mediaPlayer = MediaPlayer.create(requireContext(), path.toUri())
+            mediaPlayer.start()
         }
-    }
-
-    // TODO: не парься, TTS временно
-    override fun onInit(status: Int) {
-        if (status == SUCCESS) {
-            val locale = Locale(viewModel.locale.value)
-            val result: Int = textToSpeech!!.setLanguage(locale)
-            if (result == LANG_MISSING_DATA || result == LANG_NOT_SUPPORTED)
-                showSnackbar(resources.getString(R.string.unsupported_language))
-            // TODO: isEnabled ???
-            else viewBinding.imMain.isEnabled = true
-        } else showSnackbar(resources.getString(R.string.error))
     }
 
     private fun onBackPressed() {
@@ -189,6 +183,12 @@ class LearnFragment : Fragment(R.layout.fragment_learn), OnInitListener {
             }
         }
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mediaPlayer.stop()
+        mediaPlayer.release()
     }
 
     companion object {

@@ -26,4 +26,6 @@
     <string name="image_prev">Previous image</string>
     <string name="start_quiz">Start quiz?</string>
     <string name="tap_to_start_quiz">Tap to\nstart quiz</string>
+    <string name="fruits">Fruits \nvegetables</string>
+    <string name="figures">Figures</string>
 </resources>

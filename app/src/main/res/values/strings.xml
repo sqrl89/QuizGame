@@ -26,4 +26,6 @@
     <string name="image_prev" >image_prev</string>
     <string name="start_quiz">Начать игру?</string>
     <string name="tap_to_start_quiz">Нажми, чтобы\nначать квиз</string>
+    <string name="fruits">Фрукты \nОвощи</string>
+    <string name="figures">Фигуры</string>
 </resources>

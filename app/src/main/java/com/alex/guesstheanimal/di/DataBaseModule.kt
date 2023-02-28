@@ -2,7 +2,7 @@ package com.alex.guesstheanimal.di
 
 import android.content.Context
 import androidx.room.Room
-import com.alex.guesstheanimal.data.database.Database
+import com.alex.guesstheanimal.database.Database
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -49,13 +49,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:contentDescription="@string/image_start_quiz"
         android:scaleX="3"
         android:scaleY="3"
         android:button="@drawable/start_quiz_selector"
         android:buttonTint="@color/icon_foreground"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

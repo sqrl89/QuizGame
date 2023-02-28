@@ -2,7 +2,7 @@ package com.alex.guesstheanimal.ui.quiz
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alex.guesstheanimal.data.database.Animal
+import com.alex.guesstheanimal.database.Animal
 import com.alex.guesstheanimal.ui.Screens
 import com.alex.guesstheanimal.ui.quiz.core.QuizInteractor
 import com.github.terrakok.cicerone.Router
@@ -46,7 +46,6 @@ class QuizViewModel @Inject constructor(
     private val _locale = MutableStateFlow("ru")
     var locale = _locale.asStateFlow()
 
-
     fun setCategory(category: String) {
         _category.value = category
     }
@@ -88,10 +87,8 @@ class QuizViewModel @Inject constructor(
         _locale.value = locale
     }
 
-    // TODO: check backstack
     fun onResult(result: Int) {
         router.replaceScreen(Screens.Result(result))
-//        router.navigateTo(Screens.Result(result))
     }
 
     fun onBackPressed() {
