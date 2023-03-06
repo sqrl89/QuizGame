@@ -47,7 +47,6 @@ class LearnViewModel @Inject constructor(
     private val _locale = MutableStateFlow("ru")
     var locale = _locale.asStateFlow()
 
-    // TODO: check
     fun setCategory(category: String) {
         _category.value = category
         when (category) {

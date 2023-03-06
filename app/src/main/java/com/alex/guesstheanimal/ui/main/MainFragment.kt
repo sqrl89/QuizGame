@@ -18,6 +18,9 @@ import com.alex.guesstheanimal.utils.Const.CATEGORY_HOME
 import com.alex.guesstheanimal.utils.Const.CATEGORY_LETTERS_EN
 import com.alex.guesstheanimal.utils.Const.CATEGORY_LETTERS_RU
 import com.alex.guesstheanimal.utils.Const.LOCALE_EN
+import com.alex.guesstheanimal.utils.Const.LOCALE_EN_UK
+import com.alex.guesstheanimal.utils.Const.LOCALE_EN_US
+import com.alex.guesstheanimal.utils.Const.LOCALE_RU
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
@@ -42,12 +45,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             imFruits.setOnClickListener { viewModel.onChooseCategory(CATEGORY_FRUITS) }
             imFigures.setOnClickListener { viewModel.onChooseCategory(CATEGORY_FIGURES) }
             imLetters.setOnClickListener { checkLocaleForLetters() }
-            imLanguageEN.setOnClickListener { setAppLocale("en") }
-            imLanguageRU.setOnClickListener { setAppLocale("ru") }
+            imLanguageEN.setOnClickListener { setAppLocale(LOCALE_EN) }
+            imLanguageRU.setOnClickListener { setAppLocale(LOCALE_RU) }
         }
     }
 
-    // TODO: check memory leak
     private fun setAppLocale(language: String) {
         val locale = Locale(language)
         Locale.setDefault(locale)
@@ -61,7 +63,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     private fun checkLocaleForLetters() {
         when (resources.configuration.locales[0].toString()) {
-            LOCALE_EN -> viewModel.onChooseCategory(CATEGORY_LETTERS_EN)
+            LOCALE_EN, LOCALE_EN_UK, LOCALE_EN_US -> viewModel.onChooseCategory(CATEGORY_LETTERS_EN)
             else -> viewModel.onChooseCategory(CATEGORY_LETTERS_RU)
         }
     }

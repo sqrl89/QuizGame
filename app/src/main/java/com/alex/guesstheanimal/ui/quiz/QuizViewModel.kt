@@ -22,7 +22,6 @@ class QuizViewModel @Inject constructor(
     private val interactor: QuizInteractor,
 ) : ViewModel() {
 
-    // TODO: statedataclass ???
     private val _category = MutableStateFlow("")
 
     private val _animalList = MutableStateFlow<MutableList<Animal>?>(null)
@@ -94,5 +93,4 @@ class QuizViewModel @Inject constructor(
     fun onBackPressed() {
         router.exit()
     }
-
 }

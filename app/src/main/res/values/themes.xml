@@ -1,8 +1,8 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.GuessTheAnimal" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/quiz_background</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -15,5 +15,17 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="snackbarStyle">@style/MySnackbar</item>
+        <item name="snackbarTextViewStyle">@style/MySnackbarTextView</item>
+    </style>
+
+    <style name="MySnackbar" parent="@style/Widget.MaterialComponents.Snackbar">
+        <item name="android:layout_margin">0dp</item>
+        <item name="animationMode">slide</item>
+    </style>
+
+    <style name="MySnackbarTextView" parent="@style/Widget.MaterialComponents.Snackbar.TextView">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textAlignment">center</item>
     </style>
 </resources>

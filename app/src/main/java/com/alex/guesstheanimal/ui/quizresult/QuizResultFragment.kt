@@ -161,9 +161,11 @@ class QuizResultFragment : Fragment(R.layout.fragment_quiz_result) {
     }
 
     override fun onDestroyView() {
+        if (this::mediaPlayer.isInitialized) {
+            mediaPlayer.stop()
+            mediaPlayer.release()
+        }
         super.onDestroyView()
-        mediaPlayer.stop()
-        mediaPlayer.release()
     }
 
     companion object {

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GuessTheAnimal</string>
+    <string name="app_name">Games for kids</string>
     <string name="unsupported_language">Unsupported language</string>
     <string name="error">Error!</string>
     <string name="domestic_animals">Domestic\nanimals</string>
     <string name="forest_animals">Forest\nanimals</string>
     <string name="african_animals">World\nanimals</string>
     <string name="dinosaurs">Dinosaurs</string>
-    <string name="games_for_kids">Education for kids</string>
+    <string name="games_for_kids">Games for kids</string>
     <string name="result">Your result: </string>
     <string name="slash"> / </string>
     <string name="congrats_0">Try again!</string>
@@ -28,4 +28,14 @@
     <string name="tap_to_start_quiz">Tap to\nstart quiz</string>
     <string name="fruits">Fruits \nvegetables</string>
     <string name="figures">Figures</string>
+    <string name="english_language">english language</string>
+    <string name="russian_language">russian_language</string>
+    <string name="cloud">cloud</string>
+    <string name="point_star">point_star</string>
+    <string name="top_left_picture">up left picture</string>
+    <string name="wrong_answer">wrong answer</string>
+    <string name="top_right_picture">top right picture</string>
+    <string name="bottom_left_picture">bottom left picture</string>
+    <string name="bottom_right_picture">bottom right picture</string>
+    <string name="right_answer_picture">right answer picture</string>
 </resources>

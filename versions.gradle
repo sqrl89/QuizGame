@@ -4,8 +4,9 @@ ext {
     viewBindingDelegateVersion = "1.5.6"
     lifecycleVersion = "2.5.1"
     ciceroneVersion = "7.1"
-    viewBindingVersion = "7.4.1"
+    viewBindingVersion = "7.4.2"
     fragmentVersion = "1.5.5"
     glideVersion = "4.11.0"
     konfettiVersion = "2.0.2"
+    appVersion = "0.8"
 }

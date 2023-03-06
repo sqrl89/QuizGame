@@ -22,27 +22,26 @@
     <ImageView
         android:id="@+id/imTopLeft"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/top_left_picture"
-        android:scaleType="centerCrop"
+        android:scaleType="fitEnd"
         app:layout_constraintBottom_toTopOf="@id/glHorizontal"
         app:layout_constraintEnd_toStartOf="@id/glVertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/wrongTopLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/wrong_answer"
-        android:scaleX="3"
-        android:scaleY="3"
+        android:scaleX="4"
+        android:scaleY="4"
         android:src="@drawable/ic_wrong_answer"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/imTopLeft"
         app:layout_constraintEnd_toEndOf="@+id/imTopLeft"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/imTopLeft"
+        app:layout_constraintTop_toTopOf="@id/imTopLeft" />
 
     <TextView
         android:id="@+id/tvTopRight"
@@ -58,27 +57,26 @@
     <ImageView
         android:id="@+id/imTopRight"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/top_right_picture"
-        android:scaleType="centerCrop"
+        android:scaleType="fitEnd"
         app:layout_constraintBottom_toTopOf="@id/glHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/glVertical"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/glVertical" />
 
     <ImageView
         android:id="@+id/wrongTopRight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/wrong_answer"
-        android:scaleX="3"
-        android:scaleY="3"
+        android:scaleX="4"
+        android:scaleY="4"
         android:src="@drawable/ic_wrong_answer"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/imTopRight"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imTopRight"
         app:layout_constraintStart_toStartOf="@id/imTopRight"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/imTopRight" />
 
     <TextView
         android:id="@+id/tvBottomLeft"
@@ -94,11 +92,10 @@
     <ImageView
         android:id="@+id/imBottomLeft"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/bottom_left_picture"
-        android:scaleType="centerCrop"
+        android:scaleType="fitStart"
         android:textSize="0sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/glVertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/glHorizontal" />
@@ -108,13 +105,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/wrong_answer"
-        android:scaleX="3"
-        android:scaleY="3"
+        android:scaleX="4"
+        android:scaleY="4"
         android:src="@drawable/ic_wrong_answer"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imBottomLeft"
         app:layout_constraintEnd_toEndOf="@+id/imBottomLeft"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imBottomLeft"
         app:layout_constraintTop_toTopOf="@id/imBottomLeft" />
 
     <TextView
@@ -131,10 +128,9 @@
     <ImageView
         android:id="@+id/imBottomRight"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/bottom_right_picture"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="fitStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/glVertical"
         app:layout_constraintTop_toBottomOf="@id/glHorizontal" />
@@ -144,12 +140,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/wrong_answer"
-        android:scaleX="3"
-        android:scaleY="3"
+        android:scaleX="4"
+        android:scaleY="4"
         android:src="@drawable/ic_wrong_answer"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/imBottomRight"
+        app:layout_constraintEnd_toEndOf="@id/imBottomRight"
         app:layout_constraintStart_toStartOf="@id/imBottomRight"
         app:layout_constraintTop_toTopOf="@id/imBottomRight" />
 
@@ -172,10 +168,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/right_answer_picture"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

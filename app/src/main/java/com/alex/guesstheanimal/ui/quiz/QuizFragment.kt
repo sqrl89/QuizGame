@@ -17,13 +17,18 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.alex.guesstheanimal.R
 import com.alex.guesstheanimal.database.Animal
 import com.alex.guesstheanimal.databinding.FragmentGameBinding
+import com.alex.guesstheanimal.utils.Const.LOCALE_BY_BY
 import com.alex.guesstheanimal.utils.Const.LOCALE_EN
+import com.alex.guesstheanimal.utils.Const.LOCALE_EN_UK
+import com.alex.guesstheanimal.utils.Const.LOCALE_EN_US
 import com.alex.guesstheanimal.utils.Const.LOCALE_RU
+import com.alex.guesstheanimal.utils.Const.LOCALE_RU_BY
 import com.alex.guesstheanimal.utils.Const.QUIZ_COUNT
+import com.alex.guesstheanimal.utils.Const.TAG
 import com.alex.guesstheanimal.utils.appearScaleAnimation
 import com.alex.guesstheanimal.utils.disappearScaleAnimation
 import com.alex.guesstheanimal.utils.showOrGone
-import com.alex.guesstheanimal.utils.showToast
+import com.alex.guesstheanimal.utils.showSnackbar
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -58,11 +63,10 @@ class QuizFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
-    // TODO: check if default EN
     private fun setLocale() {
         when (resources.configuration.locales[0].toString()) {
-            LOCALE_RU -> viewModel.setLocale("ru")
-            LOCALE_EN -> viewModel.setLocale("en")
+            LOCALE_RU, LOCALE_RU_BY, LOCALE_BY_BY -> viewModel.setLocale(LOCALE_RU)
+            LOCALE_EN, LOCALE_EN_UK, LOCALE_EN_US -> viewModel.setLocale(LOCALE_EN)
         }
     }
 
@@ -73,14 +77,13 @@ class QuizFragment : Fragment(R.layout.fragment_game) {
             list.shuffle()
             val randomFourList = mutableListOf(list[0], list[1], list[2], list[3])
             val animalAnswer = randomFourList.random()
-            Log.e(TAG, "setUi: answer = ${animalAnswer.nameRu}")
+            Log.e(TAG, "answer = ${animalAnswer.nameRu}")
             appearScaleAnimation(
                 1000, imTopLeft, imTopRight, imBottomLeft, imBottomRight
             )
             showOrGone(0, true, imTopLeft, imTopRight, imBottomLeft, imBottomRight)
             viewModel.setRightAnswer(animalAnswer)
             when (viewModel.locale.value) {
-                // TODO: soundpool???
                 LOCALE_RU -> animalAnswer.soundUriRu?.let { speakOut(true, 500, it) }
                 LOCALE_EN -> animalAnswer.soundUriEN?.let { speakOut(true, 700, it) }
             }
@@ -186,12 +189,10 @@ class QuizFragment : Fragment(R.layout.fragment_game) {
         }
     }
 
-    // TODO: check
     private fun checkQuizCount() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewBinding.apply {
                 if (viewModel.quizCount.value == QUIZ_COUNT) {
-                    // TODO: ???
                     delay(4000)
                     viewModel.onResult(viewModel.rightAnswersCount.value)
                 } else {
@@ -200,7 +201,6 @@ class QuizFragment : Fragment(R.layout.fragment_game) {
                         100, false, wrongTopLeft, wrongTopRight, wrongBottomLeft, wrongBottomRight
                     )
                 }
-                // TODO: ???
                 delay(4000)
                 setUi()
             }
@@ -231,7 +231,7 @@ class QuizFragment : Fragment(R.layout.fragment_game) {
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (viewModel.isDoubleBackPressed.value) viewModel.onBackPressed()
-                else showToast(getString(R.string.tap_again))
+                else showSnackbar(getString(R.string.tap_again))
                 viewModel.doubleBackPressed()
             }
         }
@@ -247,7 +247,6 @@ class QuizFragment : Fragment(R.layout.fragment_game) {
     }
 
     companion object {
-        private const val TAG = "e"
         private const val QUIZ_KEY = "quiz_key"
 
         fun newInstance(category: String) = QuizFragment().apply {

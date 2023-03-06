@@ -12,25 +12,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="@font/airfool"
-        android:text="@string/games_for_kids"
         android:maxLines="1"
+        android:text="@string/games_for_kids"
         android:textColor="@color/main_title"
-        android:textSize="48sp"
+        android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <HorizontalScrollView
-        android:id="@+id/mainScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
         android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/llLangSelector"
-        app:layout_constraintTop_toBottomOf="@id/tvLearnAnimals">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -52,11 +52,11 @@
 
                     <ImageView
                         android:id="@+id/imDomestic"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:src="@drawable/main_domestic"
-                        android:contentDescription="@string/domestic_animals" />
+                        android:contentDescription="@string/domestic_animals"
+                        android:src="@drawable/main_domestic" />
 
                     <TextView
                         android:id="@+id/tvDomestic"
@@ -67,7 +67,7 @@
                         android:fontFamily="@font/suplexmentary_comic_nc"
                         android:text="@string/domestic_animals"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -84,11 +84,11 @@
 
                     <ImageView
                         android:id="@+id/imForest"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:src="@drawable/main_forest"
-                        android:contentDescription="@string/forest_animals" />
+                        android:contentDescription="@string/forest_animals"
+                        android:src="@drawable/main_forest" />
 
                     <TextView
                         android:id="@+id/tvForest"
@@ -99,7 +99,7 @@
                         android:fontFamily="@font/suplexmentary_comic_nc"
                         android:text="@string/forest_animals"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -116,11 +116,11 @@
 
                     <ImageView
                         android:id="@+id/imAfrica"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:src="@drawable/main_africa"
-                        android:contentDescription="@string/african_animals" />
+                        android:contentDescription="@string/african_animals"
+                        android:src="@drawable/main_africa" />
 
                     <TextView
                         android:id="@+id/tvAfrica"
@@ -131,42 +131,10 @@
                         android:fontFamily="@font/suplexmentary_comic_nc"
                         android:text="@string/african_animals"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="16dp"
-                app:cardCornerRadius="8dp"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/imDino"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_margin="4dp"
-                        android:src="@drawable/main_dinosaur"
-                        android:contentDescription="@string/dinosaurs" />
-
-                    <TextView
-                        android:id="@+id/tvDino"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center_horizontal"
-                        android:fontFamily="@font/suplexmentary_comic_nc"
-                        android:paddingTop="8dp"
-                        android:text="@string/dinosaurs"
-                        android:textAlignment="center"
-                        android:textSize="18sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -181,11 +149,11 @@
 
                     <ImageView
                         android:id="@+id/imColors"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:src="@drawable/main_colors"
-                        android:contentDescription="@string/colors" />
+                        android:contentDescription="@string/colors"
+                        android:src="@drawable/main_colors" />
 
                     <TextView
                         android:id="@+id/tvColors"
@@ -194,9 +162,10 @@
                         android:layout_gravity="bottom|center_horizontal"
                         android:fontFamily="@font/suplexmentary_comic_nc"
                         android:paddingTop="8dp"
+                        android:paddingBottom="12dp"
                         android:text="@string/colors"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -213,11 +182,11 @@
 
                     <ImageView
                         android:id="@+id/imDigits"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:src="@drawable/main_digits"
-                        android:contentDescription="@string/digits" />
+                        android:contentDescription="@string/digits"
+                        android:src="@drawable/main_digits" />
 
                     <TextView
                         android:id="@+id/tvDigits"
@@ -226,9 +195,10 @@
                         android:layout_gravity="bottom|center_horizontal"
                         android:fontFamily="@font/suplexmentary_comic_nc"
                         android:paddingTop="8dp"
+                        android:paddingBottom="12dp"
                         android:text="@string/digits"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -245,11 +215,11 @@
 
                     <ImageView
                         android:id="@+id/imLetters"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:src="@drawable/main_letters"
-                        android:contentDescription="@string/letters" />
+                        android:contentDescription="@string/letters"
+                        android:src="@drawable/main_letters" />
 
                     <TextView
                         android:id="@+id/tvLetters"
@@ -258,17 +228,18 @@
                         android:layout_gravity="bottom|center_horizontal"
                         android:fontFamily="@font/suplexmentary_comic_nc"
                         android:paddingTop="8dp"
+                        android:paddingBottom="12dp"
                         android:text="@string/letters"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="24sp"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:cardCornerRadius="8dp"
-                android:layout_marginEnd="16dp">
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="8dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -277,30 +248,31 @@
 
                     <ImageView
                         android:id="@+id/imFurniture"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:src="@drawable/main_furniture"
-                        android:contentDescription="@string/furniture" />
+                        android:contentDescription="@string/furniture"
+                        android:src="@drawable/main_furniture" />
 
                     <TextView
                         android:id="@+id/tvFurniture"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center_horizontal"
-                        android:paddingTop="8dp"
                         android:fontFamily="@font/suplexmentary_comic_nc"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="12dp"
                         android:text="@string/furniture"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:cardCornerRadius="8dp"
-                android:layout_marginEnd="16dp">
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="8dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -309,22 +281,23 @@
 
                     <ImageView
                         android:id="@+id/imFigures"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:src="@drawable/main_figures"
-                        android:contentDescription="@string/figures" />
+                        android:contentDescription="@string/figures"
+                        android:src="@drawable/main_figures" />
 
                     <TextView
                         android:id="@+id/tvFigures"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center_horizontal"
-                        android:paddingTop="8dp"
                         android:fontFamily="@font/suplexmentary_comic_nc"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="12dp"
                         android:text="@string/figures"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -340,11 +313,11 @@
 
                     <ImageView
                         android:id="@+id/imFruits"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:src="@drawable/main_fruits"
-                        android:contentDescription="@string/fruits" />
+                        android:contentDescription="@string/fruits"
+                        android:src="@drawable/main_fruits" />
 
                     <TextView
                         android:id="@+id/tvFruits"
@@ -355,36 +328,71 @@
                         android:fontFamily="@font/suplexmentary_comic_nc"
                         android:text="@string/fruits"
                         android:textAlignment="center"
-                        android:textSize="18sp" />
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:visibility="gone"
+                app:cardCornerRadius="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imDino"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:contentDescription="@string/dinosaurs"
+                        android:src="@drawable/main_dinosaur" />
+
+                    <TextView
+                        android:id="@+id/tvDino"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:fontFamily="@font/suplexmentary_comic_nc"
+                        android:paddingTop="8dp"
+                        android:text="@string/dinosaurs"
+                        android:textAlignment="center"
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
+
+
     </HorizontalScrollView>
 
     <LinearLayout
         android:id="@+id/llLangSelector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="16dp">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/imLanguageRU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_language_ru"
-            android:contentDescription="@string/russian_language" />
+            android:layout_marginEnd="48dp"
+            android:contentDescription="@string/russian_language"
+            android:src="@drawable/ic_language_ru" />
 
         <ImageView
             android:id="@+id/imLanguageEN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_language_en"
-            android:contentDescription="@string/english_language" />
+            android:contentDescription="@string/english_language"
+            android:src="@drawable/ic_language_en" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,6 @@ import android.view.View
 import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.alex.guesstheanimal.R
@@ -13,12 +12,8 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-fun Fragment.showSnackbar(text: String) {
-    Snackbar.make(requireView(), text, Snackbar.LENGTH_SHORT).show()
-}
-
-fun Fragment.showToast(text: String) {
-    Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
+fun Fragment.showSnackbar(text: String){
+     Snackbar.make(requireView(), text, Snackbar.LENGTH_SHORT).show()
 }
 
 fun Fragment.showOrGone(delay: Long, show: Boolean, vararg views: View) {

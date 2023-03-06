@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/airfool"
         android:textColor="@color/main_title"
-        android:textSize="48sp"
+        android:textSize="72sp"
         app:layout_constraintBottom_toTopOf="@+id/cloud"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +31,8 @@
 
     <ImageView
         android:id="@+id/cloud"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_width="600dp"
+        android:layout_height="300dp"
         android:contentDescription="@string/cloud"
         android:src="@drawable/cloud"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,8 +42,8 @@
 
     <ImageView
         android:id="@+id/imStar1"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
         android:contentDescription="@string/point_star"
         android:src="@drawable/ic_star_empty"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,8 +53,8 @@
 
     <ImageView
         android:id="@+id/imStar2"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/point_star"
         android:src="@drawable/ic_star_empty"
@@ -64,8 +64,8 @@
 
     <ImageView
         android:id="@+id/imStar3"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
         android:layout_marginStart="16dp"
         android:contentDescription="@string/point_star"
         android:src="@drawable/ic_star_empty"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/airfool"
         android:textColor="@color/purple_700"
-        android:textSize="32sp"
+        android:textSize="72sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

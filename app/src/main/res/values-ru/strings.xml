@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GuessTheAnimal</string>
+    <string name="app_name">Развивашки</string>
     <string name="unsupported_language">Извините, этот язык не поддерживается</string>
     <string name="error">Ошибка!</string>
     <string name="domestic_animals">Домашние\nживотные</string>
@@ -27,4 +28,14 @@
     <string name="tap_to_start_quiz">Нажми, чтобы\nначать квиз</string>
     <string name="fruits">Фрукты \nОвощи</string>
     <string name="figures">Фигуры</string>
+    <string name="english_language">русский язык</string>
+    <string name="russian_language">английский язык</string>
+    <string name="cloud">облачко</string>
+    <string name="point_star">звездочка</string>
+    <string name="top_left_picture">верхнее левое изображение</string>
+    <string name="wrong_answer">неправильный ответ</string>
+    <string name="top_right_picture">верхнее правое изображение</string>
+    <string name="bottom_left_picture">нижнее левое изображение</string>
+    <string name="bottom_right_picture">верхнее правое изображение</string>
+    <string name="right_answer_picture">правильный ответ</string>
 </resources>

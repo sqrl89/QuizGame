@@ -18,12 +18,17 @@ import com.alex.guesstheanimal.databinding.FragmentLearnBinding
 import com.alex.guesstheanimal.utils.Const.CATEGORY_DIGITS
 import com.alex.guesstheanimal.utils.Const.CATEGORY_LETTERS_EN
 import com.alex.guesstheanimal.utils.Const.CATEGORY_LETTERS_RU
+import com.alex.guesstheanimal.utils.Const.LOCALE_BY_BY
 import com.alex.guesstheanimal.utils.Const.LOCALE_EN
+import com.alex.guesstheanimal.utils.Const.LOCALE_EN_UK
+import com.alex.guesstheanimal.utils.Const.LOCALE_EN_US
 import com.alex.guesstheanimal.utils.Const.LOCALE_RU
+import com.alex.guesstheanimal.utils.Const.LOCALE_RU_BY
+import com.alex.guesstheanimal.utils.Const.TAG
 import com.alex.guesstheanimal.utils.appearScaleAnimation
 import com.alex.guesstheanimal.utils.disappearScaleAnimation
 import com.alex.guesstheanimal.utils.showOrGone
-import com.alex.guesstheanimal.utils.showToast
+import com.alex.guesstheanimal.utils.showSnackbar
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -47,11 +52,10 @@ class LearnFragment : Fragment(R.layout.fragment_learn) {
         setFirstAnimal()
     }
 
-    // TODO: check if default EN and in VM
     private fun setLocale() {
         when (resources.configuration.locales[0].toString()) {
-            LOCALE_RU -> viewModel.setLocale("ru")
-            LOCALE_EN -> viewModel.setLocale("en")
+            LOCALE_RU, LOCALE_RU_BY, LOCALE_BY_BY  -> viewModel.setLocale(LOCALE_RU)
+            LOCALE_EN, LOCALE_EN_UK, LOCALE_EN_US -> viewModel.setLocale(LOCALE_EN)
         }
     }
 
@@ -59,10 +63,9 @@ class LearnFragment : Fragment(R.layout.fragment_learn) {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.onChosenCategory().collectLatest { list ->
-                    // TODO: refactor
-                    val cat = viewModel.category.value
-                    if (cat == CATEGORY_DIGITS || cat == CATEGORY_LETTERS_RU || cat == CATEGORY_LETTERS_EN) {
-                        Log.e("TAG", "setFirstAnimal: $cat")
+                    val category = viewModel.category.value
+                    if (category == CATEGORY_DIGITS || category == CATEGORY_LETTERS_RU || category == CATEGORY_LETTERS_EN) {
+                        Log.e(TAG, "category: $category")
                     } else list.shuffle()
                     viewModel.setAnimalList(list)
                     Glide.with(requireContext()).load(list[0].imageUri?.toUri())
@@ -125,12 +128,15 @@ class LearnFragment : Fragment(R.layout.fragment_learn) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewBinding.apply {
                 imNext.setOnClickListener {
+                    pauseMediaPlayer()
                     viewModel.animalList.value?.let { onNextAnimal(it) }
                 }
                 imPrev.setOnClickListener {
+                    pauseMediaPlayer()
                     viewModel.animalList.value?.let { onPrevAnimal(it) }
                 }
                 cbQuiz.setOnClickListener {
+                    pauseMediaPlayer()
                     viewBinding.apply {
                         if (cbQuiz.isChecked) {
                             mediaPlayer = if (viewModel.locale.value == "ru") MediaPlayer.create(
@@ -177,7 +183,7 @@ class LearnFragment : Fragment(R.layout.fragment_learn) {
                     checkCount(viewModel.constLearnCount.value)
                 } else {
                     if (viewModel.isDoubleBackPressed.value) viewModel.onBackPressed()
-                    else showToast(getString(R.string.tap_again))
+                    else showSnackbar(getString(R.string.tap_again))
                     viewModel.doubleBackPressed()
                 }
             }
@@ -185,10 +191,16 @@ class LearnFragment : Fragment(R.layout.fragment_learn) {
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
     }
 
+    private fun pauseMediaPlayer() {
+        if (mediaPlayer.isPlaying) mediaPlayer.pause()
+    }
+
     override fun onDestroyView() {
+        if (this::mediaPlayer.isInitialized) {
+            mediaPlayer.stop()
+            mediaPlayer.release()
+        }
         super.onDestroyView()
-        mediaPlayer.stop()
-        mediaPlayer.release()
     }
 
     companion object {
